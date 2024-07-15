@@ -6,7 +6,7 @@ const RandomQuote = ({ category }) => {
     const fetchQuote = async () => {
         try {
             const apiUrl = `https://api.api-ninjas.com/v1/quotes?category=${category}`;
-            const apiKey = '8ZiH8AyjTtoDQFwqHiayfA==mozIRG57WLkjPxD0';
+            const apiKey = 'your-api-key';
 
             const response = await fetch(apiUrl, {
                 headers: {
