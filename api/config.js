@@ -1,13 +1,24 @@
-import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-
 dotenv.config();
 
-const dbURI = process.env.MONGODB_URI;
+import { MongoClient } from 'mongodb';
 
-const connectDb = () => { 
-    mongoose.connect(dbURI)
-    .then(() => console.log('MongoDB connected'))
-    .catch((err) => console.error('MongoDB connection error:', err));
+const uri = process.env.MONGODB_URI;
+
+async function connectToMongoDB() {
+    try {
+        const client = new MongoClient(uri, {
+            tls: true,
+        });
+
+        await client.connect();
+        console.log('Connected to MongoDB');
+        return client;
+    } catch (err) {
+        console.error('Error connecting to MongoDB', err);
+        throw err;
+    }
 }
-export { connectDb };
+
+export { connectToMongoDB };
+
