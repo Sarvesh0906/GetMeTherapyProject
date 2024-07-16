@@ -5,11 +5,6 @@ dotenv.config();
 
 const dbURI = process.env.MONGODB_URI;
 
-if (!dbURI) {
-  console.error('MONGODB_URI environment variable not set');
-  process.exit(1);
-}
-
 const connectToMongoDB = async () => {
   try {
     await mongoose.connect(dbURI, {
